@@ -1,5 +1,5 @@
 package lib
 
-func Name() string {
+func Version() string {
 	return "library-master"
 }
