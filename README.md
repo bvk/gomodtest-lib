@@ -16,9 +16,17 @@ so on.
 
 3. For `v2`, `v3`, etc. branches `go.mod` file must have `/v2`, `/v3`, etc. suffixes.
 
-This step can be the first commit in the respective branches. Other projects
-would import these versions selectively by a developer action. For example, to
-use `v2` branch, developer must do,
+As a first step in the `v2` branches, developers should include `/v2` suffix in
+the module name and all import paths. This can be done with the following
+commands:
+
+```
+$ go mod edit -module github.com/user/project/v2
+$ find . -name '*.go' -exec sed -i -e 's,github.com/user/project,github.com/user/project/v2,g' {} \;
+```
+
+Other projects would import these versions selectively by a developer
+action. For example, to use `v2` branch, developer must do,
 
 ```
 $ go get github.com/user/project/v2@v2.0.5
